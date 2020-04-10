@@ -1,8 +1,17 @@
 language: node_js
 node_js:
-  - "stable"
+  - stable
 install: npm install
 services:
   - mongodb
 script: npm test
 after_success: npm run coverage
+deploy:
+  provider: heroku
+  api_key:
+    secure: s4lU7oHUcEcxAdy+BGV8ae0NUx+8wRiIpm8F7aRNedslQQHMpbc14PhF4smffC+S3vhr56BUiGFMSBmmuaD8C+DR+/UDrri9tSqR6w8KHx7QTn+ryGgPa4WIlORhS/ZbhRDnyar4kqIstq7Yg3XxC6VWBKHlFZQTfhMyVLKFKTdJD2M7O0HsQUgyuul0YIJhTIdpJxLTTrTZ0jAPe25nV3CL58QZ9i5iJ9jnJ1/ukuMJKizNl3nnyiljTUEo8sFmNG/VFEVdCeG6NM0hrSsJTRIP2QURF14yZxwGxqZYp9ojSkKvwP2LgLf7Ukyy9szJ8CLPhv5uNgwseiTHxZzxyJYkVH4f2rt4ckGZqiLwOX3dF4FMPrKsViDSGMbcdjbuoTbqEVXu7VWkjvw/pQv5VFSDAy3vWCGOAmmmqAW2Y87qGpO82cKOMj1kMVgmdlOvke447sZaMAp+fmzUG99vgVbDLp0zoXAorqCNNoLjza3I6ipch1I61c0q/wioTfqVQFa8Ob/+8eaCPx3yEzE9Auk4hTCb3AIGQsRfe5T5H3b6A7BX9NYHgfp5j3uqrAmQsGa7AgyMgfic9wwcuZHtSwgr8joixXTzE11tvJomqjJTrjuzoK7eojMz2+ry/bu62pAVxODiSdbclXR09ghawSEcfMFCbf6noxMvwOXq8Ss=
+  app: scottpg-express-ci
+  on:
+    repo: Scott-PG/mongodb-mongoose-express-ci
+  run:
+    - "node seed/userProjects.js"
